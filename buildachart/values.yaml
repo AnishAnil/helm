@@ -8,8 +8,11 @@ image:
   repository: drupal
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
-
+  tag: "latest"
+  repository1: postgres
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "13"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
