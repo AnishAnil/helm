@@ -10,7 +10,7 @@ image:
   pullPolicy: Always
   repository: drupal
   repository1: postgres
-  tag: "13"
+  tag: ""
 imagePullSecrets: []
 ingress: 
   annotations: {}
