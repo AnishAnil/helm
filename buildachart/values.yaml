@@ -9,8 +9,8 @@ fullnameOverride: ""
 image: 
   pullPolicy: Always
   repository: drupal
-  repository1: postgres
-  tag: ""
+  #repository1: postgres
+  tag: "latest"
 imagePullSecrets: []
 ingress: 
   annotations: {}
@@ -41,3 +41,6 @@ serviceAccount:
   create: true
   name: root
 tolerations: []
+user: user
+password: password
+db: test1

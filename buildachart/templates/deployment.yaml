@@ -45,14 +45,19 @@ spec:
             httpGet:
               path: /
               port: http
+        - name: postgres #{{ .Chart.Name }}
+          image: postgres #"{{ .Values.image.repository1 }}:{{ .Values.image.tag }}" #| default .Chart.AppVersion
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: POSTGRES_USER
+            value: "{{ .Values.user }}" #"user"
+          - name: POSTGRES_PASSWORD
+            value: "{{ .Values.password }}" #"password"
+          - name: POSTGRES_DB
+            value: "{{ .Values.db }}" #"test"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository1 }}:{{ .Values.image.tag }}" #| default .Chart.AppVersion
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
