@@ -55,6 +55,16 @@ spec:
             value: "{{ .Values.password }}" #"password"
           - name: POSTGRES_DB
             value: "{{ .Values.db }}" #"test"
+            volumeMounts:
+            - mountPath: "/var/lib/postgresql/data"
+              name: postgres_sql
+        volumes:
+        - name: test-volume
+          hostPath:
+          # directory location on host
+          path: "/data/postgresdb_path"
+          # this field is optional
+          type: Directory
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
