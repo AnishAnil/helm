@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drupal
+spec:
+  selector:
+    matchLabels:
+      app: drupal
+  template:
+    metadata:
+      labels:
+        app: drupal
+    spec:
+      containers:
+      - name: drupal
+        image: drupal
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      - name: postgres
+        image: postgres
+        env:
+        - name: POSTGRES_USER
+          value: test
+        - name: POSTGRES_PASSWORD
+          value: passwd
+        volumeMounts:
+        - name: postgres_vol
+          mountPath: /var/lib/postgresql/data
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+      volumes: 
+      - name: test-volume
+        hostPath:
+        - path: /data
+          type: Directory
+

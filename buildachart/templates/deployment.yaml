@@ -60,6 +60,7 @@ spec:
             value: "{{ .Values.db }}" #"test"
           volumeMounts:
           - name: postgres_sql
+<<<<<<< HEAD
             mountPath: /var/lib/postgresql/data
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
@@ -69,6 +70,18 @@ spec:
           hostPath:
             path: /data/postgresdb_path
             type: Directory
+=======
+            mountPath: "/var/lib/postgresql/data"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}        
+      volumes:
+      - name: postgres_sql
+        hostPath:
+          path: /data/postgresdb_path
+          type: Directory
+          
+>>>>>>> 30a75edefd0408085c22460f825aa5a89cdfc033
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
