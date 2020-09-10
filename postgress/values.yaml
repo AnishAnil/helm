@@ -38,7 +38,8 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 
+  port: 80:wq!
+  
 
 ingress:
   enabled: false
