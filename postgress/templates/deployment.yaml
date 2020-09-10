@@ -40,6 +40,9 @@ spec:
             value: {{ .Values.user | lower | quote }}
           - name: POSTGRES_DB
             value: {{ .Values.db | lower | quote}}
+          volumeMounts:
+          - name: postgres
+            mountPath: /var/lib/postgresql/data
           ports:
             - name: http
               containerPort: 80
