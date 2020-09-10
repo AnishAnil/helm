@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# Default values for mychart.
+# Default values for new4.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -78,17 +77,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-Message: "Hello Anish"
-Message1: "Hello Anish1"
-Message2: "Hello Anish2"
-=======
-favorite:
-  drink: coffee
-  food: pizza
-pizzaToppings:
-  - mushrooms
-  - cheese
-  - peppers
-  - onions
->>>>>>> 30a75edefd0408085c22460f825aa5a89cdfc033

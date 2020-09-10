@@ -1,0 +1,10 @@
+---
+# Source: mychart/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap #mychart-configmap
+data:
+  myvalue: {{ .Values.Message | quote }}
+  myvalue1: {{ .Values.Message1 | upper | quote }}
+  myvalue2: {{ .Values.Message2 | upper | quote }}
