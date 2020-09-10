@@ -59,7 +59,9 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
       - name: postgres   
-        hostPath: /data/postgres
+        hostPath: 
+          path: /data/postgres
+          type: Directory
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
