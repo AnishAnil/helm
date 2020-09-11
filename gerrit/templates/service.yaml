@@ -10,6 +10,8 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: http
       protocol: TCP
-      name: http
+    - port: {{ .Values.service1.port1 }}
+      targetPort: http
+      protocol: TCP
   selector:
     {{- include "gerrit.selectorLabels" . | nindent 4 }}

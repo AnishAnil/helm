@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: gerritcodereview/gerrit
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -21,7 +21,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "gerrit"
 
 podAnnotations: {}
 
@@ -38,8 +38,9 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
-
+  port: 8080
+  port1: 29418 
+  
 ingress:
   enabled: false
   annotations: {}

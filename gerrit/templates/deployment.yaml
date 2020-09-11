@@ -33,9 +33,15 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: CANONICAL_WEB_URL
+            value: http:ec2-3-137-159-4.us-east-2.compute.amazonaws.com:8080
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
+              protocol: TCP
+           - name: ssh
+              containerPort: 29418
               protocol: TCP
           livenessProbe:
             httpGet:
