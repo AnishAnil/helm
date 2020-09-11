@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gerrit-deployment
+  labels:
+    app: gerrit-meta
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gerrit
+      type: frontend
+  template:
+    metadata:
+      labels:
+        app: gerrit
+        type: frontend
+    spec:
+      containers:
+      - name: gerrit
+        image: gerritcodereview/gerrit
+        env:
+          - name: CANONICAL_WEB_URL
+            value: https://ec2-18-219-140-179.us-east-2.compute.amazonaws.com
+        volumeMounts:
+        - mountPath: /var/gerrit/etc
+          name: etc
+        - mountPath: /var/gerrit/git
+          name: git
+        - mountPath: /var/gerrit/db
+          name: db
+        - mountPath: /var/gerrit/index
+          name: index
+        - mountPath: /var/gerrit/cache
+          name: cache
+        - mountPath: /var/gerrit/plugins
+          name: plugins
+        - mountPath: /var/gerrit/logs
+          name: logs
+        - mountPath: /var/gerrit/static
+          name: static
+        - mountPath: /var/gerrit/hooks
+          name: hooks
+        - mountPath: /var/gerrit/data
+          name: data
+        - mountPath: /var/gerrit/lib
+          name: lib
+        ports:
+         - containerPort: 8080
+         - containerPort: 29418
+
+      volumes:
+      - name: etc
+        hostPath:
+            path: /data/gerrit324/etc
+            type: Directory
+      - name: git
+        hostPath:
+            path: /data/gerrit324/git
+            type: Directory
+      - name: db
+        hostPath:
+            path: /data/gerrit324/db
+            type: Directory
+      - name: index
+        hostPath:
+            path: /data/gerrit324/index
+            type: Directory
+      - name: cache
+        hostPath:
+            path: /data/gerrit324/cache
+            type: Directory
+      - name: plugins
+        hostPath:
+            path: /data/gerrit324/plugins
+            type: Directory
+      - name: logs
+        hostPath:
+            path: /data/gerrit324/logs
+            type: Directory
+      - name: static
+        hostPath:
+            path: /data/gerrit324/static
+            type: Directory
+      - name: hooks
+        hostPath:
+            path: /data/gerrit324/hooks
+            type: Directory
+      - name: data
+        hostPath:
+            path: /data/gerrit324/data
+            type: Directory
+      - name: lib
+        hostPath:
+            path: /data/gerrit324/lib
+            type: Directory

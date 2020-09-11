@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gerrit-service
+  labels:
+      app: gerrit
+      type: frontend
+spec:
+  ports:
+  - name: 1http
+    port: 8080
+    protocol: TCP
+  - name: sshcon
+    port: 29418
+    protocol: TCP
+  selector:
+      app: gerrit
+      type: frontend
